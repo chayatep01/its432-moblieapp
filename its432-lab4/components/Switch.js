@@ -23,7 +23,6 @@ export default class App extends Component {
     }
     return (
       <View style={styles.container}>
-        <Text style={{fontSize:30}}>{message}</Text>
         <Switch onValueChange={() => {
           this.setState({
             switch : !this.state.switch
@@ -41,6 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'pink',
+    marginBottom:50,
   }
 });

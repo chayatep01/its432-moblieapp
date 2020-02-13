@@ -12,6 +12,7 @@ import {
 } from 'react-native-chart-kit'
 import StockButton from './StockButton.js';
 import API from './api.js';
+import Switch from './Switch.js'
 
 const chartConfig = {
   backgroundGradientFrom: '#1E2923',
@@ -79,7 +80,13 @@ export default class Stocks extends Component {
           <StockButton code='AAPL' name='Apple' onPress={this.changeIndex}/>
           <StockButton code='GOOGL' name='Google' onPress={this.changeIndex}/>
           <StockButton code='UBER' name='Uber' onPress={this.changeIndex}/>
+          <View style={{margin:50}}>
+            <Switch/>
+          </View>
         </View>
+          
+
+    
       </View>
     );
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
 import Stocks from './components/Stocks05'
+import Switch from './components/Switch'
 
 
 
@@ -9,8 +10,11 @@ import Stocks from './components/Stocks05'
 export default function App() {
   return (
     <View style={styles.container}>
-      <Stocks />
+      <View>
+        <Stocks />
+      </View>
     </View>
+      
   );
 }
 
