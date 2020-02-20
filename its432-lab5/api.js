@@ -1,5 +1,5 @@
 let rootURL = 'https://api.themoviedb.org/3/search/movie?api_key=';
-let apikey = 'your api key'
+let apikey = 'your key'
 
 export default function(title) {
 	let url = `${rootURL}${apikey}&query=${title}`;

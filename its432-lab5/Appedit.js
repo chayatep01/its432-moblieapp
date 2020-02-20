@@ -6,7 +6,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SearchBar } from 'react-native-elements';
 
-import Toast, {DURATION} from 'react-native-easy-toast';
 
 import API from './api.js';
 
@@ -18,17 +17,13 @@ class ListScreen extends React.Component {
   state = {
     search: '',
   }
-
   
-
-
-
   constructor() {
     super();
     this.loadMovie = this.loadMovie.bind(this);
     this.searchMovieSubmitHandler = this.searchMovieSubmitHandler.bind(this)
     this.state = {
-      listData : Array(5).fill(null),
+      listData : Array(5).fill(null)
     };
   }
   
@@ -56,7 +51,6 @@ class ListScreen extends React.Component {
 
   render() {
     const { search } = this.state
-    //let error
     let pic = {uri: 'https://image.tmdb.org/t/p/w200/jIjdFXKUNtdf1bwqMrhearpyjMj.jpg'};
     const listData  = this.state.listData.slice();
     // show this at when the app first loads
@@ -68,31 +62,26 @@ class ListScreen extends React.Component {
       {key: 'Movie 5', imgSource: require('./image_not_found.png')},
     ];
     // api call successful, listData is not null array
-    //console.log(listData)
     if (listData[0] !== null){
       dataToShow = [];
       for (let k = 0; k < NUM_MOVIES; k++){
         let imgURI = 'https://image.tmdb.org/t/p/w200/';
-        if (listData[k]) {
-          imgURI += listData[k].poster_path
-          new_obj = {
-            key: listData[k].title, 
-            imgSource: {uri: imgURI},
-            vote_average: listData[k].vote_average,
-            overview: listData[k].overview,
-            release_date: listData[k].release_date 
-          }
-          dataToShow.push(new_obj);
-        } else {
-          dataToShow = null
-          continue
-        }
+        imgURI += listData[k].poster_path;
+        new_obj = {
+          key: listData[k].title, 
+          imgSource: {uri: imgURI},
+          vote_average: listData[k].vote_average,
+          overview: listData[k].overview,
+          release_date: listData[k].release_date
+        };
+        dataToShow.push(new_obj);
       }
     }
 
     return (
       <View style={{padding: 20}}>
-        
+      
+
       <View style={
         {flexDirection:'row', 
           width: window.width, 
@@ -116,38 +105,34 @@ class ListScreen extends React.Component {
           <Button title="search" onPress={this.searchMovieSubmitHandler}/>
         </View>
     </View>
-
-        {dataToShow ? 
-          <FlatList
-            data = {dataToShow}
-            renderItem = { ({item}) => {
-                return(
-                  <TouchableHighlight onPress={() => {
-                    this.props.navigation.navigate('Details', {
-                      movieName: item.key,
-                      poster: item.imgSource,
-                      vote_average: item.vote_average,
-                      overview: item.overview,
-                      release_date: item.release_date
-                    });
-                  }}>
-                    <View style={styles.row}>
-                      <Image style={styles.image} source={item.imgSource}/>
-                      <Text style={styles.title}>
-                          {item.key}
-                      </Text>
-                    </View>
-                  </TouchableHighlight>
-                );
-              }
+      
+      
+      
+      
+        <FlatList
+          data = {dataToShow}
+          renderItem = { ({item}) => {
+              return(
+                <TouchableHighlight onPress={() => {
+                  this.props.navigation.navigate('Details', {
+                    movieName: item.key,
+                    poster: item.imgSource,
+                    vote_average: item.vote_average,
+                    overview: item.overview,
+                    release_date: item.release_date
+                  });
+                }}>
+                  <View style={styles.row}>
+                    <Image style={styles.image} source={item.imgSource}/>
+                    <Text style={styles.title}>
+                        {item.key}
+                    </Text>
+                  </View>
+                </TouchableHighlight>
+              );
             }
-          /> 
-          : 
-          this.refs.toast.show('Your movie can not be found', 3000)
-        }
-
-        <Toast ref="toast"/>
-
+          }
+        />
       </View>
     );
   }
