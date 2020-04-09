@@ -1,5 +1,5 @@
 var rootURL = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='
-var api_key = '{YOURAPIKEY}'
+var api_key = '{7MB19PDXN932JXYI}'
 
 export default function(code) {
   var url = `${rootURL}${code}&apikey=${api_key}`;
